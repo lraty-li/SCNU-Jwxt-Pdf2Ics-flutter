@@ -1,0 +1,8 @@
+SCNU-Jwxt-Pdf2Ics
+
+This product includes software developed at
+The Apache Software Foundation (http://www.apache.org/).
+
+includes PdfBox-Android(https://github.com/TomRoush/PdfBox-Android) which using Apache2.0 license
+
+Modify and directly use code from flutter-pdf-text which using MIT license
