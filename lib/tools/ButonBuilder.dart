@@ -13,9 +13,9 @@ class RoundButton extends StatelessWidget {
 
   final VoidCallback? onPressed;
   final IconData? icon;
-  double? iconSize;
+  final double? iconSize;
   final text;
-  double? textFontSize;
+  final double? textFontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +33,12 @@ class RoundButton extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
               child: Icon(
                 icon,
-                size: iconSize ??= 10,
+                size: iconSize,
               ),
             ),
             RichText(
               text: TextSpan(
-                  text: text, style: TextStyle(fontSize: textFontSize ??= 20)),
+                  text: text, style: TextStyle(fontSize: textFontSize)),
             )
           ],
         ));
