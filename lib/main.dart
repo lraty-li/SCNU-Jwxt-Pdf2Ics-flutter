@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ButonBuilder.dart';
+import 'package:scnu_jwxt_pdf2ics/tools/GetLocalFilePath.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ThemedPage.dart';
 import 'package:scnu_jwxt_pdf2ics/util/ConvertingConfigurationData.dart';
 import 'package:provider/provider.dart';
@@ -13,9 +14,14 @@ import 'ExpandableFab.dart';
 // import 'Page/SettingPage.dart';
 // import 'Page/ConvertingConfiguration.dart';
 import 'Page/ConverDonePage.dart';
+import 'Page/DebugPage.dart';
 import 'Page/ThemePage.dart';
 import 'Page/PdfLoadedPage.dart';
 import 'util/ThemeStat.dart';
+
+//custom git package , check pubspec
+import 'package:native_dup2/native_dup2.dart';
+import 'package:ffi/src/utf8.dart';
 
 //TODO 接受外部intent
 
@@ -28,6 +34,19 @@ void main() async {
       DeviceOrientation.portraitDown,
     ],
   );
+
+// this will redirect all console output to log.txt
+  var path = await getLocalPath();
+  path = "$path/log.txt";
+  // 3 is the file descriptor of android std output?
+  int result = nativeRunDup2(path.toNativeUtf8(), 3);
+
+  if (result < 0) {
+    print("fail to runDup2");
+    print(result);
+  }
+
+  //load user data
   ConvertingConfigurationData.loadPreference().then((e) => runApp(MyApp()));
 }
 
@@ -42,7 +61,8 @@ class MyApp extends StatelessWidget {
         routes: {
           PdfLoadedPage.routeName: (BuildContext context) => PdfLoadedPage(),
           ConverDonePage.routeName: (BuildContext context) => ConverDonePage(),
-          ThemePage.routeName: (BuildContext context) => ThemePage()
+          ThemePage.routeName: (BuildContext context) => ThemePage(),
+          DebugPage.routeName: (BuildContext context) => DebugPage()
         },
 
         //多语言
@@ -189,7 +209,7 @@ class MainPage extends StatelessWidget {
           value: "菜单按钮",
           child: ExpandableFab(
             //最大弹出元素高度
-            distance: 300.0,
+            distance: 400.0,
             children: [
               ActionButton(
                 onPressed: () => _pushRoute(context, ThemePage.routeName),
@@ -204,8 +224,20 @@ class MainPage extends StatelessWidget {
                 text: "主题",
               ),
               ActionButton(
-                onPressed: () => _pushRoute(context, ThemePage.routeName),
+                onPressed: () => _pushRoute(context, DebugPage.routeName),
                 icon: Icons.code,
+                iconSize: _iconSize,
+                text: "调试",
+              ),
+              ActionButton(
+                onPressed: () => _pushRoute(context, ThemePage.routeName),
+                icon: Icons.qr_code,
+                iconSize: _iconSize,
+                text: "扫码上传",
+              ),
+              ActionButton(
+                onPressed: () => _pushRoute(context, ThemePage.routeName),
+                icon: Icons.info,
                 iconSize: _iconSize,
                 text: "关于",
               ),

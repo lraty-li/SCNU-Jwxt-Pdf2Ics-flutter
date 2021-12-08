@@ -4,7 +4,6 @@ import 'package:scnu_jwxt_pdf2ics/tools/ShareFile.dart';
 import 'package:open_file/open_file.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ThemedPage.dart';
 
-
 class ConverDonePage extends StatefulWidget {
   static const routeName = "ConverDonePage";
   const ConverDonePage({Key? key}) : super(key: key);
@@ -14,10 +13,6 @@ class ConverDonePage extends StatefulWidget {
 }
 
 class _ConverDonePageState extends State<ConverDonePage> {
-  Future<void> _shareIcs() async {
-    await shareFile(context, "${ModalRoute.of(context)!.settings.arguments}");
-  }
-
   void _openFile() async {
     final _result = await OpenFile.open(
         "${ModalRoute.of(context)!.settings.arguments}",
@@ -55,7 +50,11 @@ class _ConverDonePageState extends State<ConverDonePage> {
             Padding(
                 padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
                 child: RoundButton(
-                  onPressed: _shareIcs,
+                  onPressed: () async {
+                    //share ics file
+                    await shareFile(context,
+                        "${ModalRoute.of(context)!.settings.arguments}");
+                  },
                   text: "分享日历文件",
                   textFontSize: 25,
                   icon: Icons.share,
@@ -65,7 +64,14 @@ class _ConverDonePageState extends State<ConverDonePage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
               child: RoundButton(
-                onPressed: _openFile,
+                onPressed: () async {
+                  //open ics file
+                  final _result = await OpenFile.open(
+                      "${ModalRoute.of(context)!.settings.arguments}",
+                      type: "text/calendar",
+                      uti: "text/calendar");
+                  print(_result.message);
+                },
                 text: "打开（导入）日历文件",
                 textFontSize: 25,
                 icon: Icons.event,
@@ -76,6 +82,8 @@ class _ConverDonePageState extends State<ConverDonePage> {
         ),
       ),
     );
-    return ThemedPage(appContent: _scaffold,);
+    return ThemedPage(
+      appContent: _scaffold,
+    );
   }
 }

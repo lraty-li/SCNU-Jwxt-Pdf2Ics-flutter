@@ -231,6 +231,15 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.1"
+  native_dup2:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "4cf1c9d76ee22c72337c0a18d0b8fe60da0d57e4"
+      url: "https://github.com/lraty-li/flutter_dup2.git"
+    source: git
+    version: "0.0.1"
   native_pdf_renderer:
     dependency: transitive
     description:
@@ -315,6 +324,20 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.4"
+  permission_handler:
+    dependency: "direct main"
+    description:
+      name: permission_handler
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "8.3.0"
+  permission_handler_platform_interface:
+    dependency: transitive
+    description:
+      name: permission_handler_platform_interface
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.7.0"
   petitparser:
     dependency: transitive
     description:
