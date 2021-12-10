@@ -55,7 +55,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
         .push(MaterialPageRoute(builder: (context) => pdfView()));
   }
 
-  Future _progressPdf() async {
+  Future _progressPdf(BuildContext context) async {
     final _pdfFilePath = ModalRoute.of(context)!.settings.arguments;
     PDFDoc _pdfDoc = await PDFDoc.fromPath("$_pdfFilePath");
 
@@ -75,8 +75,8 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
     setState(() {
       _progressHintText = "整理课程数据...(2/3)";
     });
-    Classifier dataClassifier = new Classifier();
-    IcalGenerator icalGenerator = new IcalGenerator();
+    Classifier dataClassifier = Classifier();
+    IcalGenerator icalGenerator = IcalGenerator(context);
     //整理数据
     ClassifiedPdfData pdfFileData = dataClassifier.classify(textJson);
     setState(() {
@@ -143,7 +143,11 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
                 ConvertingConstruction(),
                 Text(_progressHintText),
                 RoundButton(
-                  onPressed: _buttonsEnabled ? _progressPdf : null,
+                  onPressed: _buttonsEnabled
+                      ? () {
+                          _progressPdf(context);
+                        }
+                      : null,
                   text: "Read whole document",
                   textFontSize: 25,
                   icon: Icons.transform,
@@ -157,7 +161,8 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
     );
 
     return ThemedPage(
-      appContent: _scaffold,
+      home: _scaffold,
+      routes: {},
     );
   }
 }

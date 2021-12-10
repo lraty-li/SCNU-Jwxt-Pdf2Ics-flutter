@@ -1,4 +1,5 @@
 {
+    "langSelfDescr": "简体中文",
     "helloWorld": "你好！世界！",
     "test": "测试",
     "start": "开始",
@@ -6,8 +7,13 @@
     "daXueCheng": "大学城",
     "nanHai": "南海",
     "shanWei": "汕尾",
-    "icalEventTitleType0":"课程名",
-    "icalEventTitleType1":"课程名+地点",
-    "icalEventTitleType2":"课程名+教师名称",
-    "icalEventTitleType3":"课程名+地点+教师名称"
+    "icalEventTitleType0": "课程名",
+    "icalEventTitleType1": "课程名+地点",
+    "icalEventTitleType2": "课程名+教师名称",
+    "icalEventTitleType3": "课程名+地点+教师名称",
+    "theme": "主题",
+    "themeLight": "浅色",
+    "themeDark": "深色",
+    "themeMaterialDark": "Material 深色",
+    "themeFollowSystem": "跟随系统"
 }

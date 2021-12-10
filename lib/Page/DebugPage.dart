@@ -24,7 +24,7 @@ class _DebugPagePageState extends State<DebugPage> {
     _loadLogText();
   }
 
-  String _text = "                    Loading                    ";
+  String _text = "Loading";
 
   Future<void> _loadLogText() async {
     var path = await getLocalPath();
@@ -46,7 +46,7 @@ class _DebugPagePageState extends State<DebugPage> {
       // log(tempText);
     } catch (e) {
       // inspect(e);
-      tempText = "load failed";
+      tempText = "**********  load failed  **********";
     }
 
     // var temp=[2,3];
@@ -104,7 +104,8 @@ class _DebugPagePageState extends State<DebugPage> {
           )),
     );
     return ThemedPage(
-      appContent: _scaffold,
+      home: _scaffold,
+      routes: {},
     );
   }
 }

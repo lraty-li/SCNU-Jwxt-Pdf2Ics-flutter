@@ -37,10 +37,7 @@ class RoundButton extends StatelessWidget {
                 size: iconSize,
               ),
             ),
-            RichText(
-              text: TextSpan(
-                  text: text, style: TextStyle(fontSize: textFontSize)),
-            )
+            Text(text, style: TextStyle(fontSize: textFontSize)),
           ],
         ));
     return button;

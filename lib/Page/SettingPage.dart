@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:scnu_jwxt_pdf2ics/Page/ThemePage.dart';
-import 'package:scnu_jwxt_pdf2ics/util/ThemeStat.dart';
+import 'package:scnu_jwxt_pdf2ics/tools/ThemedPage.dart';
+
+//** Deprecated Page */
+
 
 class _Item {
   _Item({
@@ -14,7 +14,7 @@ class _Item {
 }
 
 class SettigPage extends StatelessWidget {
-  static const routeName="SettigPage";
+  static const routeName = "SettigPage";
   final List options = [
     ["语言", Icons.g_translate],
     ["主题与深色模式", Icons.dark_mode],
@@ -37,16 +37,10 @@ class SettigPage extends StatelessWidget {
           titleTextStyle: TextStyle(fontSize: 25)),
       body: _buildSettingListView(),
     );
-    return Consumer<ThemeState>(
-      builder: (context, themeStat, child) => MaterialApp(
-        home: _settingScaffold,
-        theme: themeStat.themeDataLight,
-        darkTheme: themeStat.themeDataDark,
-        themeMode: themeStat.themeMode,
-        routes: {
-          "ThemePage": (BuildContext context) => ThemePage(),
-        },
-      ),
+    return ThemedPage(
+      home: _settingScaffold,
+      routes: {
+      },
     );
   }
 

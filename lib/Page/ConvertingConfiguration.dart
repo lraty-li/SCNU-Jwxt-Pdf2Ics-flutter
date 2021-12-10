@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/src/provider.dart';
 import 'package:scnu_jwxt_pdf2ics/util/ConvertingConfigurationData.dart';
-import 'package:scnu_jwxt_pdf2ics/util/enums.dart';
+import 'package:scnu_jwxt_pdf2ics/util/confgEnums.dart';
 
 // //ics文件设置
 class ConvertingConstruction extends StatefulWidget {
@@ -12,7 +13,7 @@ class ConvertingConstruction extends StatefulWidget {
 }
 
 class _ConvertingConstructionState extends State<ConvertingConstruction> {
-  bool _ifAlarm = ConvertingConfigurationData.ifAlarm;
+  late bool _ifAlarm;
 
   late TextEditingController _textFieldControllerAlarMinutes;
   late TextEditingController _textFieldControllerCurrentTeachingWeek;
@@ -20,17 +21,23 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
   void initState() {
     super.initState();
 
+    //TODO 检查多余调用 load locale
+    final convertingConfigurationDataState =
+        context.read<ConvertingConfigurationDataState>();
+
+    _ifAlarm = convertingConfigurationDataState.ifAlarm;
+
     //绑定变化监听，合法变化就设置用户配置
     _textFieldControllerAlarMinutes = TextEditingController(text: "0");
     _textFieldControllerAlarMinutes.addListener(() {
       if (_textFieldControllerAlarMinutes.text != "")
-        ConvertingConfigurationData.setAlarMinutes(
-            int.parse(_textFieldControllerAlarMinutes.text));
+        convertingConfigurationDataState
+            .setAlarMinutes(int.parse(_textFieldControllerAlarMinutes.text));
     });
     _textFieldControllerCurrentTeachingWeek = TextEditingController(text: "0");
     _textFieldControllerCurrentTeachingWeek.addListener(() {
       if (_textFieldControllerCurrentTeachingWeek.text != "")
-        ConvertingConfigurationData.setCurrentTeachingWeek(
+        convertingConfigurationDataState.setCurrentTeachingWeek(
             int.parse(_textFieldControllerCurrentTeachingWeek.text));
     });
   }
@@ -50,10 +57,14 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
   ///    widgetType 将要构建的类型(选择校区/日历标题格式)
   Widget _buildDrowDownChooser(String title, List<String> itemList,
       drowDownChooserWidgeTypeEnum widgetType) {
+    //TODO 优化，在类中存储？
+    final convertingConfigurationDataState =
+        context.read<ConvertingConfigurationDataState>();
+
     return Row(mainAxisSize: MainAxisSize.min, children: [
       Text("$title:"),
       DropdownButton<String>(
-        value: ConvertingConfigurationData.getToDrowDownValue(widgetType),
+        value: convertingConfigurationDataState.getToDrowDownValue(widgetType),
         icon: const Icon(Icons.arrow_downward),
         iconSize: 24,
         elevation: 16,
@@ -64,7 +75,7 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
         ),
         onChanged: (String? newValue) {
           setState(() {
-            ConvertingConfigurationData.setByDrowDownValue(
+            convertingConfigurationDataState.setByDrowDownValue(
                 widgetType, newValue!);
           });
         },
@@ -90,6 +101,10 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
 */
   Widget _buildTextField(String title, int inputFormatterMax,
       String limitHintText, TextEditingController controller) {
+    //TODO 优化，在类中存储？
+    final convertingConfigurationDataState =
+        context.read<ConvertingConfigurationDataState>();
+
     return GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
@@ -120,10 +135,14 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
 
   @override
   Widget build(BuildContext context) {
+    //TODO 优化，在类中存储？
+    final convertingConfigurationDataState =
+        context.read<ConvertingConfigurationDataState>();
+
     _textFieldControllerAlarMinutes.text =
-        ConvertingConfigurationData.alarMinutes.toString();
+        convertingConfigurationDataState.alarMinutes.toString();
     _textFieldControllerCurrentTeachingWeek.text =
-        ConvertingConfigurationData.currentTeachingWeek.toString();
+        convertingConfigurationDataState.currentTeachingWeek.toString();
 
     return ConstrainedBox(
       constraints: BoxConstraints(minWidth: double.infinity),
@@ -131,11 +150,13 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          _buildDrowDownChooser("选择校区", ConvertingConfigurationData.campusStrs,
+          _buildDrowDownChooser(
+              "选择校区",
+              convertingConfigurationDataState.campusStrs,
               drowDownChooserWidgeTypeEnum.campus),
           _buildDrowDownChooser(
             "事件标题格式",
-            ConvertingConfigurationData.icalTitleTypeStrs,
+            convertingConfigurationDataState.icalTitleTypeStrs,
             drowDownChooserWidgeTypeEnum.icalTitleType,
           ),
           Row(
@@ -147,7 +168,7 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
                   value: _ifAlarm,
                   onChanged: (value) {
                     _ifAlarm = value;
-                    ConvertingConfigurationData.setIfAlarm(_ifAlarm);
+                    convertingConfigurationDataState.setIfAlarm(_ifAlarm);
                     setState(() {});
                   }),
             ],

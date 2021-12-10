@@ -13,13 +13,6 @@ class ConverDonePage extends StatefulWidget {
 }
 
 class _ConverDonePageState extends State<ConverDonePage> {
-  void _openFile() async {
-    final _result = await OpenFile.open(
-        "${ModalRoute.of(context)!.settings.arguments}",
-        type: "text/calendar",
-        uti: "text/calendar");
-    print(_result.message);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +76,8 @@ class _ConverDonePageState extends State<ConverDonePage> {
       ),
     );
     return ThemedPage(
-      appContent: _scaffold,
+      home: _scaffold,
+      routes: {},
     );
   }
 }
