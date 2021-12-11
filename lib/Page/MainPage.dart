@@ -109,77 +109,72 @@ class MainPage extends StatelessWidget {
             ],
           ),
         ),
-        floatingActionButton: Semantics(
-          //TODO 无障碍 辅助 文本 国际化
-          value: "菜单按钮",
-          child: ExpandableFab(
-            //最大弹出元素高度
-            distance: 400.0,
-            children: [
-              ActionButton(
-                onPressed: () {
-                  //TODO 取消用户数据静态类？
-                  final localizationState = context.read<LocalizationState>();
+        floatingActionButton: ExpandableFab(
+          //最大弹出元素高度
+          distance: 400.0,
+          children: [
+            ActionButton(
+              onPressed: () {
+                final localizationState = context.read<LocalizationState>();
 
-                  List<ListTile> listListTiles = [];
-                  var appSupportedLocales = AppLocalizations.supportedLocales;
-                  appSupportedLocales.forEach((element) {
-                    //收集 语言描述
-                    AppLocalizations.delegate
-                        .load(element)
-                        .then((value) => listListTiles.add(ListTile(
-                              title: Text(value.langSelfDescr),
-                              onTap: () {
-                                localizationState.changeLocale(element);
-                              },
-                            )));
-                  });
-
-                  popModalBottomSheet(context, listListTiles);
-                },
-                icon: Icons.g_translate,
-                iconSize: _iconSize,
-                text: AppLocalizations.of(context)!.language,
-              ),
-              ActionButton(
-                onPressed: () {
-                  var themeState = context.read<ThemeState>();
-                  List<ListTile> listListTiles = [];
-
-                  themeState.themeStrs
-                      .forEach((element) => listListTiles.add(ListTile(
-                            title: Text(element),
+                List<ListTile> listListTiles = [];
+                var appSupportedLocales = AppLocalizations.supportedLocales;
+                appSupportedLocales.forEach((element) {
+                  //收集 语言描述
+                  AppLocalizations.delegate
+                      .load(element)
+                      .then((value) => listListTiles.add(ListTile(
+                            title: Text(value.langSelfDescr),
                             onTap: () {
-                              themeState.changeThemeData(element);
+                              localizationState.changeLocale(element);
                             },
                           )));
+                });
 
-                  popModalBottomSheet(context, listListTiles);
-                },
-                icon: Icons.dark_mode,
-                iconSize: _iconSize,
-                text: AppLocalizations.of(context)!.theme,
-              ),
-              ActionButton(
-                onPressed: () => _pushRoute(context, DebugPage.routeName),
-                icon: Icons.code,
-                iconSize: _iconSize,
-                text: AppLocalizations.of(context)!.debug,
-              ),
-              ActionButton(
-                onPressed: () => _pushRoute(context, DebugPage.routeName),
-                icon: Icons.qr_code,
-                iconSize: _iconSize,
-                text: AppLocalizations.of(context)!.scan,
-              ),
-              ActionButton(
-                onPressed: () => _pushRoute(context, DebugPage.routeName),
-                icon: Icons.info,
-                iconSize: _iconSize,
-                text: AppLocalizations.of(context)!.about,
-              ),
-            ],
-          ),
+                popModalBottomSheet(context, listListTiles);
+              },
+              icon: Icons.g_translate,
+              iconSize: _iconSize,
+              text: AppLocalizations.of(context)!.language,
+            ),
+            ActionButton(
+              onPressed: () {
+                var themeState = context.read<ThemeState>();
+                List<ListTile> listListTiles = [];
+
+                themeState.themeStrs
+                    .forEach((element) => listListTiles.add(ListTile(
+                          title: Text(element),
+                          onTap: () {
+                            themeState.changeThemeData(element);
+                          },
+                        )));
+
+                popModalBottomSheet(context, listListTiles);
+              },
+              icon: Icons.dark_mode,
+              iconSize: _iconSize,
+              text: AppLocalizations.of(context)!.theme,
+            ),
+            ActionButton(
+              onPressed: () => _pushRoute(context, DebugPage.routeName),
+              icon: Icons.code,
+              iconSize: _iconSize,
+              text: AppLocalizations.of(context)!.debug,
+            ),
+            ActionButton(
+              onPressed: () => _pushRoute(context, DebugPage.routeName),
+              icon: Icons.qr_code,
+              iconSize: _iconSize,
+              text: AppLocalizations.of(context)!.scan,
+            ),
+            ActionButton(
+              onPressed: () => _pushRoute(context, DebugPage.routeName),
+              icon: Icons.info,
+              iconSize: _iconSize,
+              text: AppLocalizations.of(context)!.about,
+            ),
+          ],
         ));
 
     return ThemedPage(home: _scaffold, routes: {});

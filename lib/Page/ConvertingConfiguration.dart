@@ -8,7 +8,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 //ics文件设置
 class ConvertingConfiguration extends StatefulWidget {
   static const routeName = "ConvertingConfiguration ";
-  //TODO context命名
   late final BuildContext upperContext;
   // ConvertingConfiguration({Key? key,required upperContext}) : super(key: key);
 
@@ -67,16 +66,15 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
   ///    title 选单左侧文字
   ///    itemList 选单选项
   ///    widgetType 将要构建的类型(选择校区/日历标题格式)
-  Widget _buildDrowDownChooser(String title, List<String> itemList,
-      drowDownChooserWidgeTypeEnum widgetType) {
-    //TODO 优化，在类中存储？
-    final convertingConfigurationDataState =
-        context.read<ConvertingConfigurationDataState>();
-
+  Widget _buildDrowDownChooser(
+      String title,
+      List<String> itemList,
+      drowDownChooserWidgeTypeEnum widgetType,
+      ConvertingConfigurationDataState dataState) {
     return Row(mainAxisSize: MainAxisSize.min, children: [
       Text("$title:"),
       DropdownButton<String>(
-        value: convertingConfigurationDataState.getToDrowDownValue(widgetType),
+        value: dataState.getToDrowDownValue(widgetType),
         icon: const Icon(Icons.arrow_downward),
         iconSize: 24,
         elevation: 16,
@@ -87,8 +85,7 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
         ),
         onChanged: (String? newValue) {
           setState(() {
-            convertingConfigurationDataState.setByDrowDownValue(
-                widgetType, newValue!);
+            dataState.setByDrowDownValue(widgetType, newValue!);
           });
         },
         items: itemList.map<DropdownMenuItem<String>>((String value) {
@@ -113,7 +110,6 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
 */
   Widget _buildTextField(String title, int inputFormatterMax,
       String limitHintText, TextEditingController controller) {
-    //TODO 优化，在类中存储？
 
     return GestureDetector(
         behavior: HitTestBehavior.opaque,
@@ -145,14 +141,13 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
 
   @override
   Widget build(BuildContext context) {
-    //TODO 优化，在类中存储？
-    final convertingConfigurationDataState =
+    final convertConfigDataState =
         context.read<ConvertingConfigurationDataState>();
 
     _textFieldControllerAlarMinutes.text =
-        convertingConfigurationDataState.alarMinutes.toString();
+        convertConfigDataState.alarMinutes.toString();
     _textFieldControllerCurrentTeachingWeek.text =
-        convertingConfigurationDataState.currentTeachingWeek.toString();
+        convertConfigDataState.currentTeachingWeek.toString();
 
     return ConstrainedBox(
       constraints: BoxConstraints(minWidth: double.infinity),
@@ -162,13 +157,14 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
         children: [
           _buildDrowDownChooser(
               AppLocalizations.of(upperContext)!.choosingCampus,
-              convertingConfigurationDataState.campusStrs,
-              drowDownChooserWidgeTypeEnum.campus),
+              convertConfigDataState.campusStrs,
+              drowDownChooserWidgeTypeEnum.campus,
+              convertConfigDataState),
           _buildDrowDownChooser(
-            AppLocalizations.of(upperContext)!.icalEventTitleType,
-            convertingConfigurationDataState.icalTitleTypeStrs,
-            drowDownChooserWidgeTypeEnum.icalTitleType,
-          ),
+              AppLocalizations.of(upperContext)!.icalEventTitleType,
+              convertConfigDataState.icalTitleTypeStrs,
+              drowDownChooserWidgeTypeEnum.icalTitleType,
+              convertConfigDataState),
           Row(
             mainAxisSize: MainAxisSize.min,
             //TODO 转换时禁用switch
@@ -178,17 +174,17 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
                   value: _ifAlarm,
                   onChanged: (value) {
                     _ifAlarm = value;
-                    convertingConfigurationDataState.setIfAlarm(_ifAlarm);
+                    convertConfigDataState.setIfAlarm(_ifAlarm);
                     setState(() {});
                   }),
             ],
           ),
           if (_ifAlarm)
             //TODO 翻译
-            _buildTextField(AppLocalizations.of(upperContext)!.alarmMinutes, 150,
-                "限制为0-150分钟", _textFieldControllerAlarMinutes),
-          _buildTextField(AppLocalizations.of(upperContext)!.currTeachingWeek, 25,
-              "限制为0-25周", _textFieldControllerCurrentTeachingWeek),
+            _buildTextField(AppLocalizations.of(upperContext)!.alarmMinutes,
+                150, AppLocalizations.of(upperContext)!.numRangeLimit(0, 150), _textFieldControllerAlarMinutes),
+          _buildTextField(AppLocalizations.of(upperContext)!.currTeachingWeek,
+              25, AppLocalizations.of(upperContext)!.numRangeLimit(0, 25), _textFieldControllerCurrentTeachingWeek),
         ],
       ),
     );

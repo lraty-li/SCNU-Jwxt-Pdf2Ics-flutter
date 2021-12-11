@@ -1,10 +1,14 @@
 {
     "langSelfDescr": "繁體中文（臺灣）",
+    "@langSelfDescr": {
+        "description": "語種文字，用於選擇語言時，使用各自語種展示選項"
+    },
     "helloWorld": "你好！世界！",
     "test": "測試",
     "start": "開始",
     "ready": "準備就緒",
     "done": "完成!",
+    "previewPdf":"點選預覽pdf",
     "choosingCampus": "選擇校區",
     "shiPai": "石牌",
     "daXueCheng": "大學城",
@@ -32,5 +36,19 @@
     "about": "關於",
     "progress1": "提取pdf資料...(1/3)",
     "progress2": "整理課程資料...(2/3)",
-    "progress3": "生成ics檔案...(3/3)"
+    "progress3": "生成ics檔案...(3/3)",
+    "numRangeLimit": "限制為{min}-{max}分鐘",
+    "@numRangeLimit": {
+        "description": "數值輸入時，輸入大小限制提醒",
+        "placeholders": {
+            "min": {
+                "type": "int",
+                "example": "0"
+            },
+            "max": {
+                "type": "int",
+                "example": "20"
+            }
+        }
+    }
 }

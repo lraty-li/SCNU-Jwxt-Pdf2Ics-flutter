@@ -29,7 +29,7 @@ class PdfLoadedPage extends StatefulWidget {
 
 class _PdfLoadedPageState extends State<PdfLoadedPage> {
   bool _buttonsEnabled = true;
-  late String _progressHintText ;
+  late String _progressHintText="";
 
   @override
   void initState() {
@@ -103,7 +103,6 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
 
   @override
   Widget build(BuildContext context) {
-    _progressHintText=AppLocalizations.of(context)!.ready;
     var _scaffold = Scaffold(
       body: ConstrainedBox(
         constraints: BoxConstraints(minWidth: double.infinity),
@@ -117,7 +116,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
               children: [
                 //Logo，去除语义
                 Semantics(
-                  value: "点击预览pdf",
+                  value: AppLocalizations.of(context)!.previewPdf,
                   child: ElevatedButton(
                     onPressed: _buttonsEnabled ? _previewPdf : null,
                     child: Column(
@@ -136,7 +135,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
                             ),
                           ],
                         ),
-                        Text("点击预览pdf"),
+                        Text(AppLocalizations.of(context)!.previewPdf),
                       ],
                     ),
                   ),
