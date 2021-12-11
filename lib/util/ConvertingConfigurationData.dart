@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/PreferenceIniter.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/PreferenceSetter.dart';

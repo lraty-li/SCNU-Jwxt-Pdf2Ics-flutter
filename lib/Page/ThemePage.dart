@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ThemedPage.dart';
-import 'package:scnu_jwxt_pdf2ics/util/ThemeState.dart';
-import 'package:scnu_jwxt_pdf2ics/util/themeEnums.dart';
 
 //** Deprecated Page */
 

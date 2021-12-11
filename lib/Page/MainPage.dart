@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import 'package:scnu_jwxt_pdf2ics/tools/ModalBottomSheet.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ThemedPage.dart';
 import 'package:scnu_jwxt_pdf2ics/util/ConvertingConfigurationData.dart';
 
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:scnu_jwxt_pdf2ics/util/LocalizationState.dart';
@@ -112,6 +110,7 @@ class MainPage extends StatelessWidget {
           ),
         ),
         floatingActionButton: Semantics(
+          //TODO 无障碍 辅助 文本 国际化
           value: "菜单按钮",
           child: ExpandableFab(
             //最大弹出元素高度
@@ -140,7 +139,7 @@ class MainPage extends StatelessWidget {
                 },
                 icon: Icons.g_translate,
                 iconSize: _iconSize,
-                text: "语言",
+                text: AppLocalizations.of(context)!.language,
               ),
               ActionButton(
                 onPressed: () {
@@ -165,19 +164,19 @@ class MainPage extends StatelessWidget {
                 onPressed: () => _pushRoute(context, DebugPage.routeName),
                 icon: Icons.code,
                 iconSize: _iconSize,
-                text: "调试",
+                text: AppLocalizations.of(context)!.debug,
               ),
               ActionButton(
                 onPressed: () => _pushRoute(context, DebugPage.routeName),
                 icon: Icons.qr_code,
                 iconSize: _iconSize,
-                text: "扫码上传",
+                text: AppLocalizations.of(context)!.scan,
               ),
               ActionButton(
                 onPressed: () => _pushRoute(context, DebugPage.routeName),
                 icon: Icons.info,
                 iconSize: _iconSize,
-                text: "关于",
+                text: AppLocalizations.of(context)!.about,
               ),
             ],
           ),

@@ -1,7 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 @immutable
 class ExpandableFab extends StatefulWidget {
@@ -155,7 +154,7 @@ class _ExpandableFabState extends State<ExpandableFab>
                       child: GestureDetector(
                         onTap: _toggle,
                         child: Container(
-                          color: Color(0x0).withOpacity(0.9),
+                          color: Colors.black.withOpacity(0.9),
                           height: deviceHeight * 1.5,
                           width: deviceWidth * 1.5,
                           child: null,

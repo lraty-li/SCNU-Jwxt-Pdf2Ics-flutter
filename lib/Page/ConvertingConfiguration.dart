@@ -3,20 +3,32 @@ import 'package:flutter/services.dart';
 import 'package:provider/src/provider.dart';
 import 'package:scnu_jwxt_pdf2ics/util/ConvertingConfigurationData.dart';
 import 'package:scnu_jwxt_pdf2ics/util/confgEnums.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-// //ics文件设置
-class ConvertingConstruction extends StatefulWidget {
-  const ConvertingConstruction({Key? key}) : super(key: key);
+//ics文件设置
+class ConvertingConfiguration extends StatefulWidget {
   static const routeName = "ConvertingConfiguration ";
+  //TODO context命名
+  late final BuildContext upperContext;
+  // ConvertingConfiguration({Key? key,required upperContext}) : super(key: key);
+
+  //让AppLocalizations.of获得有本地化委托的context
+  ConvertingConfiguration({required parentContext}) {
+    upperContext = parentContext;
+  }
   @override
-  _ConvertingConstructionState createState() => _ConvertingConstructionState();
+  _ConvertingConfigurationState createState() =>
+      _ConvertingConfigurationState(upperContext);
 }
 
-class _ConvertingConstructionState extends State<ConvertingConstruction> {
+class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
   late bool _ifAlarm;
+  late final upperContext;
 
   late TextEditingController _textFieldControllerAlarMinutes;
   late TextEditingController _textFieldControllerCurrentTeachingWeek;
+
+  _ConvertingConfigurationState(this.upperContext);
   @override
   void initState() {
     super.initState();
@@ -102,8 +114,6 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
   Widget _buildTextField(String title, int inputFormatterMax,
       String limitHintText, TextEditingController controller) {
     //TODO 优化，在类中存储？
-    final convertingConfigurationDataState =
-        context.read<ConvertingConfigurationDataState>();
 
     return GestureDetector(
         behavior: HitTestBehavior.opaque,
@@ -151,11 +161,11 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           _buildDrowDownChooser(
-              "选择校区",
+              AppLocalizations.of(upperContext)!.choosingCampus,
               convertingConfigurationDataState.campusStrs,
               drowDownChooserWidgeTypeEnum.campus),
           _buildDrowDownChooser(
-            "事件标题格式",
+            AppLocalizations.of(upperContext)!.icalEventTitleType,
             convertingConfigurationDataState.icalTitleTypeStrs,
             drowDownChooserWidgeTypeEnum.icalTitleType,
           ),
@@ -163,7 +173,7 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
             mainAxisSize: MainAxisSize.min,
             //TODO 转换时禁用switch
             children: [
-              Text("是否开启提醒:"),
+              Text(AppLocalizations.of(upperContext)!.ifAlarm),
               Switch(
                   value: _ifAlarm,
                   onChanged: (value) {
@@ -174,10 +184,11 @@ class _ConvertingConstructionState extends State<ConvertingConstruction> {
             ],
           ),
           if (_ifAlarm)
-            _buildTextField(
-                "提前多少分钟提醒", 150, "限制为0-150分钟", _textFieldControllerAlarMinutes),
-          _buildTextField("当前教学周:", 25, "限制为0-25周",
-              _textFieldControllerCurrentTeachingWeek),
+            //TODO 翻译
+            _buildTextField(AppLocalizations.of(upperContext)!.alarmMinutes, 150,
+                "限制为0-150分钟", _textFieldControllerAlarMinutes),
+          _buildTextField(AppLocalizations.of(upperContext)!.currTeachingWeek, 25,
+              "限制为0-25周", _textFieldControllerCurrentTeachingWeek),
         ],
       ),
     );

@@ -17,6 +17,8 @@ import 'package:scnu_jwxt_pdf2ics/tools/Classifier.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/IcalGenerator.dart';
 import 'package:scnu_jwxt_pdf2ics/Page/ConvertingConfiguration.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class PdfLoadedPage extends StatefulWidget {
   const PdfLoadedPage({Key? key}) : super(key: key);
   static const routeName = "PdfLoadedPage";
@@ -27,7 +29,7 @@ class PdfLoadedPage extends StatefulWidget {
 
 class _PdfLoadedPageState extends State<PdfLoadedPage> {
   bool _buttonsEnabled = true;
-  String _progressHintText = "准备就绪";
+  late String _progressHintText ;
 
   @override
   void initState() {
@@ -61,7 +63,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
 
     setState(() {
       _buttonsEnabled = false;
-      _progressHintText = "提取pdf数据...(1/3)";
+      _progressHintText = AppLocalizations.of(context)!.progress1;
     });
 
     String pdfRawData = await _pdfDoc.text;
@@ -73,14 +75,14 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
     var textJson = jsonDecode(pdfRawData); //List<Map<dynamic, dynamic>>
 
     setState(() {
-      _progressHintText = "整理课程数据...(2/3)";
+      _progressHintText = AppLocalizations.of(context)!.progress2;
     });
     Classifier dataClassifier = Classifier();
     IcalGenerator icalGenerator = IcalGenerator(context);
     //整理数据
     ClassifiedPdfData pdfFileData = dataClassifier.classify(textJson);
     setState(() {
-      _progressHintText = "生成ics文件...(3/3)";
+      _progressHintText = AppLocalizations.of(context)!.progress3;
     });
     //生成ical
     VCalendar calendar = icalGenerator.generate(pdfFileData);
@@ -93,7 +95,6 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
     icalFile.writeAsStringSync(calendar.toString());
 
     setState(() {
-      _progressHintText = "完成！";
       _buttonsEnabled = true;
     });
     //ics文件路径放入路由参数,跳转
@@ -102,6 +103,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
 
   @override
   Widget build(BuildContext context) {
+    _progressHintText=AppLocalizations.of(context)!.ready;
     var _scaffold = Scaffold(
       body: ConstrainedBox(
         constraints: BoxConstraints(minWidth: double.infinity),
@@ -140,7 +142,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
                   ),
                 ),
 
-                ConvertingConstruction(),
+                ConvertingConfiguration(parentContext: context,),
                 Text(_progressHintText),
                 RoundButton(
                   onPressed: _buttonsEnabled
@@ -148,7 +150,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
                           _progressPdf(context);
                         }
                       : null,
-                  text: "Read whole document",
+                  text: AppLocalizations.of(context)!.convert,
                   textFontSize: 25,
                   icon: Icons.transform,
                   iconSize: 30,

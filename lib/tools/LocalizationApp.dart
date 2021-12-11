@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-//TODO 本文件改名
 class LocalizationApp extends StatelessWidget {
   const LocalizationApp({Key? key}) : super(key: key);
 
