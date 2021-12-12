@@ -9,9 +9,11 @@ class RoundButton extends StatelessWidget {
       this.icon,
       this.iconSize,
       required this.text,
-      this.textFontSize})
+      this.textFontSize,
+      this.padding})
       : super(key: key);
 
+  final EdgeInsetsGeometry? padding;
   final VoidCallback? onPressed;
   final IconData? icon;
   final double? iconSize;
@@ -20,7 +22,7 @@ class RoundButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var button = ElevatedButton(
+    Widget button = ElevatedButton(
         style: ButtonStyle(
           padding: MaterialStateProperty.all(EdgeInsets.all(15)),
           shape: MaterialStateProperty.all(
@@ -37,9 +39,19 @@ class RoundButton extends StatelessWidget {
                 size: iconSize,
               ),
             ),
-            Text(text, style: TextStyle(fontSize: textFontSize)),
+            ConstrainedBox(
+              //TODO how auto?
+              constraints: BoxConstraints(maxHeight: 100, maxWidth: 300),
+              child: Text(text, style: TextStyle(fontSize: textFontSize)),
+            ),
           ],
         ));
-    return button;
+    if (padding == null)
+      return button;
+    else
+      return Padding(
+        padding: padding as EdgeInsetsGeometry,
+        child: button,
+      );
   }
 }

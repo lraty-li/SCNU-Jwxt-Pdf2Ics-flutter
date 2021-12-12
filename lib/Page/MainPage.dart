@@ -1,4 +1,3 @@
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
@@ -96,15 +95,13 @@ class MainPage extends StatelessWidget {
                 ),
               ),
               // padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
-              Padding(
+              RoundButton(
+                onPressed: () => {_pickFile(context)},
+                text: AppLocalizations.of(context)!.start,
+                textFontSize: 25,
+                icon: Icons.folder_open,
+                iconSize: 30,
                 padding: const EdgeInsets.fromLTRB(0, 200, 0, 0),
-                child: RoundButton(
-                  onPressed: () => {_pickFile(context)},
-                  text: AppLocalizations.of(context)!.start,
-                  textFontSize: 25,
-                  icon: Icons.folder_open,
-                  iconSize: 30,
-                ),
               ),
             ],
           ),
@@ -163,7 +160,8 @@ class MainPage extends StatelessWidget {
               text: AppLocalizations.of(context)!.debug,
             ),
             ActionButton(
-              onPressed: () => _pushRoute(context, DebugPage.routeName),
+              //TODO unfinish
+              onPressed: () => {},
               icon: Icons.qr_code,
               iconSize: _iconSize,
               text: AppLocalizations.of(context)!.scan,

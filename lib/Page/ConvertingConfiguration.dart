@@ -71,7 +71,7 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
       List<String> itemList,
       drowDownChooserWidgeTypeEnum widgetType,
       ConvertingConfigurationDataState dataState) {
-    return Row(mainAxisSize: MainAxisSize.min, children: [
+    return Column(mainAxisSize: MainAxisSize.min, children: [
       Text("$title:"),
       DropdownButton<String>(
         value: dataState.getToDrowDownValue(widgetType),
@@ -91,7 +91,7 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
         items: itemList.map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
-            child: Text(value),
+            child: Text(value, overflow: TextOverflow.fade),
           );
         }).toList(),
       )
@@ -110,7 +110,6 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
 */
   Widget _buildTextField(String title, int inputFormatterMax,
       String limitHintText, TextEditingController controller) {
-
     return GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: () {
@@ -168,6 +167,7 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
           Row(
             mainAxisSize: MainAxisSize.min,
             //TODO 转换时禁用switch
+            //TODO AnimatedList elegant push down
             children: [
               Text(AppLocalizations.of(upperContext)!.ifAlarm),
               Switch(
@@ -181,10 +181,16 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
           ),
           if (_ifAlarm)
             //TODO 翻译
-            _buildTextField(AppLocalizations.of(upperContext)!.alarmMinutes,
-                150, AppLocalizations.of(upperContext)!.numRangeLimit(0, 150), _textFieldControllerAlarMinutes),
-          _buildTextField(AppLocalizations.of(upperContext)!.currTeachingWeek,
-              25, AppLocalizations.of(upperContext)!.numRangeLimit(0, 25), _textFieldControllerCurrentTeachingWeek),
+            _buildTextField(
+                AppLocalizations.of(upperContext)!.alarmMinutes,
+                150,
+                AppLocalizations.of(upperContext)!.numRangeLimit(0, 150),
+                _textFieldControllerAlarMinutes),
+          _buildTextField(
+              AppLocalizations.of(upperContext)!.currTeachingWeek,
+              25,
+              AppLocalizations.of(upperContext)!.numRangeLimit(0, 25),
+              _textFieldControllerCurrentTeachingWeek),
         ],
       ),
     );
