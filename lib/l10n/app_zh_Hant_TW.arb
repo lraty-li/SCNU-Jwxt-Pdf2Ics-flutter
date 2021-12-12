@@ -8,7 +8,7 @@
     "start": "開始",
     "ready": "準備就緒",
     "done": "完成!",
-    "previewPdf":"點選預覽pdf",
+    "previewPdf": "點選預覽pdf",
     "choosingCampus": "選擇校區",
     "shiPai": "石牌",
     "daXueCheng": "大學城",
@@ -37,7 +37,7 @@
     "progress1": "提取pdf資料...(1/3)",
     "progress2": "整理課程資料...(2/3)",
     "progress3": "生成ics檔案...(3/3)",
-    "numRangeLimit": "限制為{min}-{max}分鐘",
+    "numRangeLimit": "限制為{min}-{max} {unit}",
     "@numRangeLimit": {
         "description": "數值輸入時，輸入大小限制提醒",
         "placeholders": {
@@ -48,7 +48,13 @@
             "max": {
                 "type": "int",
                 "example": "20"
+            },
+            "unit": {
+                "type": "String",
+                "example": "week"
             }
         }
-    }
+    },
+    "minutes":"分鐘",
+    "week":"周"
 }

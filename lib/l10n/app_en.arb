@@ -37,7 +37,7 @@
   "progress1": "Extracting pdf data...(1/3)",
   "progress2": "Sorting course data...(2/3)",
   "progress3": "Generating ics file...(3/3)",
-  "numRangeLimit": "the limitation is {min}-{max} minutes",
+  "numRangeLimit": "the limitation is {min}-{max} {unit}",
   "@numRangeLimit": {
     "description": "the Limitation hinting text while inputing number",
     "placeholders": {
@@ -48,7 +48,13 @@
       "max": {
         "type": "int",
         "example": "20"
+      },
+      "unit":{
+        "type": "String",
+        "example": "week"
       }
     }
-  }
+  },
+  "minutes":"minutes",
+  "week":"week"
 }

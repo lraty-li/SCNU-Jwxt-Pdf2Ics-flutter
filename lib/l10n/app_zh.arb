@@ -37,7 +37,7 @@
     "progress1": "提取pdf数据...(1/3)",
     "progress2": "整理课程数据...(2/3)",
     "progress3": "生成ics文件...(3/3)",
-    "numRangeLimit": "限制为{min}-{max}分钟",
+    "numRangeLimit": "限制为{min}-{max}{unit}",
     "@numRangeLimit": {
         "description": "数值输入时，输入大小限制提醒",
         "placeholders": {
@@ -48,7 +48,13 @@
             "max": {
                 "type": "int",
                 "example": "20"
-            }
+            },
+            "unit":{
+                "type": "String",
+                "example": "week"
+              }
         }
-    }
+    },
+    "minutes":"分鐘",
+    "week":"周"
 }

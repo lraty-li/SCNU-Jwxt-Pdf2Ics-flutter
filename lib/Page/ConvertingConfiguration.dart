@@ -184,12 +184,12 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
             _buildTextField(
                 AppLocalizations.of(upperContext)!.alarmMinutes,
                 150,
-                AppLocalizations.of(upperContext)!.numRangeLimit(0, 150),
+                AppLocalizations.of(upperContext)!.numRangeLimit(0, 150,AppLocalizations.of(upperContext)!.minutes),
                 _textFieldControllerAlarMinutes),
           _buildTextField(
               AppLocalizations.of(upperContext)!.currTeachingWeek,
               25,
-              AppLocalizations.of(upperContext)!.numRangeLimit(0, 25),
+              AppLocalizations.of(upperContext)!.numRangeLimit(0, 25,AppLocalizations.of(upperContext)!.week),
               _textFieldControllerCurrentTeachingWeek),
         ],
       ),
