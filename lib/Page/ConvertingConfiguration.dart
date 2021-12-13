@@ -71,31 +71,37 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
       List<String> itemList,
       drowDownChooserWidgeTypeEnum widgetType,
       ConvertingConfigurationDataState dataState) {
-    return Column(mainAxisSize: MainAxisSize.min, children: [
-      Text("$title:"),
-      DropdownButton<String>(
-        value: dataState.getToDrowDownValue(widgetType),
-        icon: const Icon(Icons.arrow_downward),
-        iconSize: 24,
-        elevation: 16,
-        // style: const TextStyle(color: Colors.deepPurple),
-        underline: Container(
-          height: 1,
-          color: Colors.blueGrey,
-        ),
-        onChanged: (String? newValue) {
-          setState(() {
-            dataState.setByDrowDownValue(widgetType, newValue!);
-          });
-        },
-        items: itemList.map<DropdownMenuItem<String>>((String value) {
-          return DropdownMenuItem<String>(
-            value: value,
-            child: Text(value, overflow: TextOverflow.fade),
-          );
-        }).toList(),
-      )
-    ]);
+    return Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "$title:",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+          ),
+          DropdownButton<String>(
+            value: dataState.getToDrowDownValue(widgetType),
+            icon: const Icon(Icons.arrow_downward),
+            iconSize: 24,
+            elevation: 16,
+            // style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 1,
+              color: Colors.blueGrey,
+            ),
+            onChanged: (String? newValue) {
+              setState(() {
+                dataState.setByDrowDownValue(widgetType, newValue!);
+              });
+            },
+            items: itemList.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value, overflow: TextOverflow.fade),
+              );
+            }).toList(),
+          )
+        ]);
   }
 
 /*
@@ -115,10 +121,14 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
         },
-        child: Row(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("$title:"),
+            Text(
+              "$title:",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+            ),
             ConstrainedBox(
               constraints: BoxConstraints.tight(Size(200, 100)),
               //TODO:不友好的反馈,没有超出限制提醒,只是阻挡输入
@@ -150,48 +160,53 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
 
     return ConstrainedBox(
       constraints: BoxConstraints(minWidth: double.infinity),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _buildDrowDownChooser(
-              AppLocalizations.of(upperContext)!.choosingCampus,
-              convertConfigDataState.campusStrs,
-              drowDownChooserWidgeTypeEnum.campus,
-              convertConfigDataState),
-          _buildDrowDownChooser(
-              AppLocalizations.of(upperContext)!.icalEventTitleType,
-              convertConfigDataState.icalTitleTypeStrs,
-              drowDownChooserWidgeTypeEnum.icalTitleType,
-              convertConfigDataState),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            //TODO 转换时禁用switch
-            //TODO AnimatedList elegant push down
-            children: [
-              Text(AppLocalizations.of(upperContext)!.ifAlarm),
-              Switch(
-                  value: _ifAlarm,
-                  onChanged: (value) {
-                    _ifAlarm = value;
-                    convertConfigDataState.setIfAlarm(_ifAlarm);
-                    setState(() {});
-                  }),
-            ],
-          ),
-          if (_ifAlarm)
-            //TODO 翻译
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _buildDrowDownChooser(
+                AppLocalizations.of(upperContext)!.choosingCampus,
+                convertConfigDataState.campusStrs,
+                drowDownChooserWidgeTypeEnum.campus,
+                convertConfigDataState),
+            _buildDrowDownChooser(
+                AppLocalizations.of(upperContext)!.icalEventTitleType,
+                convertConfigDataState.icalTitleTypeStrs,
+                drowDownChooserWidgeTypeEnum.icalTitleType,
+                convertConfigDataState),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              //TODO 转换时禁用switch
+              //TODO AnimatedList elegant push down
+              children: [
+                Text(AppLocalizations.of(upperContext)!.ifAlarm),
+                Switch(
+                    value: _ifAlarm,
+                    onChanged: (value) {
+                      _ifAlarm = value;
+                      convertConfigDataState.setIfAlarm(_ifAlarm);
+                      setState(() {});
+                    }),
+              ],
+            ),
+            if (_ifAlarm)
+              //TODO 翻译
+              _buildTextField(
+                  AppLocalizations.of(upperContext)!.alarmMinutes,
+                  150,
+                  AppLocalizations.of(upperContext)!.numRangeLimit(
+                      0, 150, AppLocalizations.of(upperContext)!.minutes),
+                  _textFieldControllerAlarMinutes),
             _buildTextField(
-                AppLocalizations.of(upperContext)!.alarmMinutes,
-                150,
-                AppLocalizations.of(upperContext)!.numRangeLimit(0, 150,AppLocalizations.of(upperContext)!.minutes),
-                _textFieldControllerAlarMinutes),
-          _buildTextField(
-              AppLocalizations.of(upperContext)!.currTeachingWeek,
-              25,
-              AppLocalizations.of(upperContext)!.numRangeLimit(0, 25,AppLocalizations.of(upperContext)!.week),
-              _textFieldControllerCurrentTeachingWeek),
-        ],
+                AppLocalizations.of(upperContext)!.currTeachingWeek,
+                25,
+                AppLocalizations.of(upperContext)!.numRangeLimit(
+                    0, 25, AppLocalizations.of(upperContext)!.week),
+                _textFieldControllerCurrentTeachingWeek),
+          ],
+        ),
       ),
     );
   }

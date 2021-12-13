@@ -153,6 +153,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
                   textFontSize: 25,
                   icon: Icons.transform,
                   iconSize: 30,
+                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
                 ),
               ],
             ),

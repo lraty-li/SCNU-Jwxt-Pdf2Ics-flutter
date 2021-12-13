@@ -19,7 +19,7 @@
   "icalEventTitleType1": "Course Title + Location",
   "icalEventTitleType2": "Course Title + Teacher name",
   "icalEventTitleType3": "Course Title + Location + Teacher name",
-  "ifAlarm": "Enable event alamr?",
+  "ifAlarm": "Enable event alarm?",
   "alarmMinutes": "Minutes to remind in advance",
   "currTeachingWeek": "Current teaching week",
   "convert": "Start converting",
@@ -56,5 +56,6 @@
     }
   },
   "minutes":"minutes",
-  "week":"week"
+  "week":"week",
+  "sendLog":"Send log file"
 }

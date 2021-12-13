@@ -42,7 +42,7 @@ class RoundButton extends StatelessWidget {
             ConstrainedBox(
               //TODO how auto?
               constraints: BoxConstraints(maxHeight: 100, maxWidth: 300),
-              child: Text(text, style: TextStyle(fontSize: textFontSize)),
+              child: Text(text,textAlign: TextAlign.center, style: TextStyle(fontSize: textFontSize)),
             ),
           ],
         ));

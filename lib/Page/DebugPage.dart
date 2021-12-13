@@ -5,6 +5,7 @@ import 'package:scnu_jwxt_pdf2ics/tools/ButonBuilder.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/GetLocalFilePath.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ShareFile.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ThemedPage.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class DebugPage extends StatefulWidget {
   static const routeName = "DebugPage";
@@ -86,18 +87,17 @@ class _DebugPagePageState extends State<DebugPage> {
                     )),
                   ),
                 )),
-                Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 15),
-                    child: RoundButton(
-                      onPressed: () async {
-                        //send log file
-                        await shareFile(context, logFilePath);
-                      },
-                      text: "分享日历文件",
-                      textFontSize: 25,
-                      icon: Icons.share,
-                      iconSize: 30,
-                    )),
+                RoundButton(
+                  onPressed: () async {
+                    //send log file
+                    await shareFile(context, logFilePath);
+                  },
+                  text: AppLocalizations.of(context)!.sendLog,
+                  textFontSize: 25,
+                  icon: Icons.share,
+                  iconSize: 30,
+                  padding: const EdgeInsets.fromLTRB(0, 10, 0, 15),
+                ),
               ],
             ),
           )),

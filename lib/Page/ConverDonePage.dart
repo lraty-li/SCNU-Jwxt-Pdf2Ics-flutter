@@ -40,36 +40,33 @@ class _ConverDonePageState extends State<ConverDonePage> {
             ),
             Text(AppLocalizations.of(context)!.done),
 
-            Padding(
-                padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                child: RoundButton(
-                  onPressed: () async {
-                    //share ics file
-                    await shareFile(context,
-                        "${ModalRoute.of(context)!.settings.arguments}");
-                  },
-                  text: AppLocalizations.of(context)!.shareIcal,
-                  textFontSize: 25,
-                  icon: Icons.share,
-                  iconSize: 30,
-                )),
-
-            Padding(
+            RoundButton(
+              onPressed: () async {
+                //share ics file
+                await shareFile(
+                    context, "${ModalRoute.of(context)!.settings.arguments}");
+              },
+              text: AppLocalizations.of(context)!.shareIcal,
+              textFontSize: 25,
+              icon: Icons.share,
+              iconSize: 30,
               padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-              child: RoundButton(
-                onPressed: () async {
-                  //open ics file
-                  final _result = await OpenFile.open(
-                      "${ModalRoute.of(context)!.settings.arguments}",
-                      type: "text/calendar",
-                      uti: "text/calendar");
-                  print(_result.message);
-                },
-                text: AppLocalizations.of(context)!.openIcal,
-                textFontSize: 25,
-                icon: Icons.event,
-                iconSize: 30,
-              ),
+            ),
+
+            RoundButton(
+              onPressed: () async {
+                //open ics file
+                final _result = await OpenFile.open(
+                    "${ModalRoute.of(context)!.settings.arguments}",
+                    type: "text/calendar",
+                    uti: "text/calendar");
+                print(_result.message);
+              },
+              text: AppLocalizations.of(context)!.openIcal,
+              textFontSize: 25,
+              icon: Icons.event,
+              iconSize: 30,
+              padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
             ),
           ],
         ),
