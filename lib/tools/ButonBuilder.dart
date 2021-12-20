@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RoundButton extends StatelessWidget {
-  //TODO add padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
   RoundButton(
       {Key? key,
       this.onPressed,

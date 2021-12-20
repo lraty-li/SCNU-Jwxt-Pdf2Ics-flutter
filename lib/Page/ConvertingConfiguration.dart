@@ -192,7 +192,6 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
               ],
             ),
             if (_ifAlarm)
-              //TODO 翻译
               _buildTextField(
                   AppLocalizations.of(upperContext)!.alarmMinutes,
                   150,

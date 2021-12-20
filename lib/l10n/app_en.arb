@@ -60,5 +60,7 @@
   "sendLog":"Send log file",
   "showLicense":"Show Licenses",
   "close":"Close",
-  "projLocation":"Project location"
+  "projLocation":"Project location",
+  "tapExit":"Tap again to exit",
+  "unfinished":"unfinished"
 }

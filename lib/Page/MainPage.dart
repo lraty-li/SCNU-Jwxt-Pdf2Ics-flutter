@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
@@ -15,13 +13,16 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:scnu_jwxt_pdf2ics/util/LocalizationState.dart';
 import 'package:scnu_jwxt_pdf2ics/util/ThemeState.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:scnu_jwxt_pdf2ics/ExpandableFab.dart';
 
-import '../ExpandableFab.dart';
-
-@immutable
 class MainPage extends StatelessWidget {
   static const routeName = "MainPage";
-  const MainPage({Key? key}) : super(key: key);
+  MainPage({
+    Key? key,
+  }) : super(key: key);
+
+  DateTime? _lastPressedAt = DateTime.now(); //上次点击时间
 
   void _pushRoute(BuildContext context, String routeName) {
     // showDialog<void>(
@@ -72,7 +73,7 @@ class MainPage extends StatelessWidget {
 
     const double _iconSize = 40;
 
-    var _scaffold = Scaffold(
+    Scaffold _scaffold = Scaffold(
         body: ConstrainedBox(
           constraints: BoxConstraints(minWidth: double.infinity),
           child: Column(
@@ -163,7 +164,16 @@ class MainPage extends StatelessWidget {
             ),
             ActionButton(
               //TODO unfinish
-              onPressed: () => {},
+              onPressed: () => {
+                Fluttertoast.showToast(
+                    msg: AppLocalizations.of(context)!.unfinished,
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.BOTTOM,
+                    timeInSecForIosWeb: 1,
+                    // backgroundColor: Colors.red,
+                    // textColor: Colors.white,
+                    fontSize: 16.0)
+              },
               icon: Icons.qr_code,
               iconSize: _iconSize,
               text: AppLocalizations.of(context)!.scan,
@@ -179,6 +189,26 @@ class MainPage extends StatelessWidget {
           ],
         ));
 
-    return ThemedPage(home: _scaffold, routes: {});
+    return WillPopScope(
+        onWillPop: () async {
+          if (_lastPressedAt == null ||
+              DateTime.now().difference(_lastPressedAt!) >
+                  Duration(seconds: 1)) {
+            Fluttertoast.showToast(
+                msg: AppLocalizations.of(context)!.tapExit,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                textColor: Colors.white,
+                fontSize: 16.0);
+
+            //两次点击间隔超过1秒则重新计时
+            _lastPressedAt = DateTime.now();
+            return false;
+          } else {
+            return true;
+          }
+        },
+        child: ThemedPage(home: _scaffold, routes: {}));
   }
 }

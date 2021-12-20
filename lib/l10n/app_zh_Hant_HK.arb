@@ -60,6 +60,7 @@
     "sendLog":"分享日誌文件",
     "showLicense":"查看許可證",
     "close":"關閉",
-    "projLocation":"項目地址"
-
+    "projLocation":"項目地址",
+    "tapExit":"再點一次退出",
+    "unfinished":"未實現"
 }
