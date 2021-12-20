@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
@@ -5,6 +7,7 @@ import 'package:scnu_jwxt_pdf2ics/Page/DebugPage.dart';
 import 'package:scnu_jwxt_pdf2ics/Page/PdfLoadedPage.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ButonBuilder.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ModalBottomSheet.dart';
+import 'package:scnu_jwxt_pdf2ics/tools/ShowLicences.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ThemedPage.dart';
 import 'package:scnu_jwxt_pdf2ics/util/ConvertingConfigurationData.dart';
 
@@ -136,7 +139,6 @@ class MainPage extends StatelessWidget {
             ),
             ActionButton(
               onPressed: () {
-                var themeState = context.read<ThemeState>();
                 List<ListTile> listListTiles = [];
 
                 themeState.themeStrs
@@ -167,7 +169,9 @@ class MainPage extends StatelessWidget {
               text: AppLocalizations.of(context)!.scan,
             ),
             ActionButton(
-              onPressed: () => _pushRoute(context, DebugPage.routeName),
+              onPressed: () {
+                ShowLicense(context, themeState.getcurrThemeData(context));
+              },
               icon: Icons.info,
               iconSize: _iconSize,
               text: AppLocalizations.of(context)!.about,

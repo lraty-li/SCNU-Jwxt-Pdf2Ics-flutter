@@ -16,13 +16,12 @@ class LocalizationApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     // pass supportedLocals
 
     var localizationState = context.read<LocalizationState>();
-    localizationState.supportedLocals=AppLocalizations.supportedLocales;
+    localizationState.supportedLocals = AppLocalizations.supportedLocales;
     localizationState.setLocalById();
-    
+
     return Consumer<LocalizationState>(
         builder: (context, LocalizationState, child) => MaterialApp(
               home: MainPage(),

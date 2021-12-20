@@ -57,6 +57,9 @@
     },
     "minutes":"分鐘",
     "week":"周",
-    "sendLog":"分享日志文件"
+    "sendLog":"分享日志文件",
+    "showLicense":"查看许可证",
+    "close":"关闭",
+    "projLocation":"项目地址"
 
 }

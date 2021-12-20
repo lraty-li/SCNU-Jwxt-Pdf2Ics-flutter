@@ -57,5 +57,8 @@
   },
   "minutes":"minutes",
   "week":"week",
-  "sendLog":"Send log file"
+  "sendLog":"Send log file",
+  "showLicense":"Show Licenses",
+  "close":"Close",
+  "projLocation":"Project location"
 }

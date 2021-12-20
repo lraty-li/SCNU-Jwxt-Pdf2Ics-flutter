@@ -17,7 +17,7 @@ class ThemedPage extends StatelessWidget {
         //显示语义
         // showSemanticsDebugger: true,
         home: home,
-        theme: themeState.themeDataLight,
+        theme: themeState.getcurrThemeData(context),
         darkTheme: themeState.themeDataDark,
         themeMode: themeState.themeMode,
         routes: routes,
