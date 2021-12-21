@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:scnu_jwxt_pdf2ics/tools/GetLocalFilePath.dart';
 
 import 'package:scnu_jwxt_pdf2ics/tools/LocalizationApp.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/PreferenceIniter.dart';
@@ -31,15 +32,15 @@ void main() async {
 
 //********************************************************** */
 // this will redirect all console output to log.txt
-  // var path = await getLocalPath();
-  // path = "$path/log.txt";
-  // // 3 is the file descriptor of android std output?
-  // int result = nativeRunDup2(path.toNativeUtf8(), 3);
+  var path = await getLocalPath();
+  path = "$path/log.txt";
+  // 3 is the file descriptor of android std output?
+  int result = nativeRunDup2(path.toNativeUtf8(), 3);
 
-  // if (result < 0) {
-  //   print("fail to runDup2");
-  //   print(result);
-  // }
+  if (result < 0) {
+    print("fail to runDup2");
+    print(result);
+  }
 //********************************************************** */
 
   //load all user data

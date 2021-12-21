@@ -164,7 +164,7 @@ class _ConvertingConfigurationState extends State<ConvertingConfiguration> {
         padding: const EdgeInsets.all(15),
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             _buildDrowDownChooser(
                 AppLocalizations.of(upperContext)!.choosingCampus,

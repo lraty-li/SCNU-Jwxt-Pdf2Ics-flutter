@@ -89,6 +89,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
 
     //保存文件
     String dir = (await getApplicationDocumentsDirectory()).path;
+    //TODO 清除历史残留文件
     String icsPath = '$dir/${pdfFileData.fileInfo['Semester']}.ics';
     File icalFile = new File('$icsPath');
 
@@ -153,7 +154,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
                   textFontSize: 25,
                   icon: Icons.transform,
                   iconSize: 30,
-                  padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+                  // padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
                 ),
               ],
             ),
