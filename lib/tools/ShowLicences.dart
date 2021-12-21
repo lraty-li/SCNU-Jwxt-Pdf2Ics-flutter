@@ -20,11 +20,13 @@ ShowLicense(BuildContext Uppercontext, ThemeData themeData) {
               child: RichText(
                   text: TextSpan(children: [
                 TextSpan(
-                    text: "${AppLocalizations.of(Uppercontext)!.projLocation}\n\n\n",
+                    text:
+                        "${AppLocalizations.of(Uppercontext)!.projLocation}\n\n\n",
                     style: TextStyle(color: Colors.blue),
                     recognizer: _projUrl
                       ..onTap = () {
-                        launch("https://github.com/lraty-li/SCNU-Jwxt-Pdf2Ics-flutter");
+                        launch(
+                            "https://github.com/lraty-li/SCNU-Jwxt-Pdf2Ics-flutter");
                         print("hi");
                       }),
                 TextSpan(
@@ -32,7 +34,9 @@ ShowLicense(BuildContext Uppercontext, ThemeData themeData) {
                         """This product includes software developed at The Apache Software Foundation (http://www.apache.org/).
 \nincludes \n PdfBox-Android Apache2.0 license \n(https://github.com/TomRoush/PdfBox-Android)  
 
-\nModify and directly use code from flutter-pdf-text MIT license \n(https://github.com/AlessioLuciani/flutter-pdf-text)""")
+\nModify and directly use code from flutter-pdf-text MIT license \n(https://github.com/AlessioLuciani/flutter-pdf-text)""",
+                    style:
+                        TextStyle(color: themeData.textTheme.bodyText1!.color))
               ])),
             ),
             actions: <Widget>[
