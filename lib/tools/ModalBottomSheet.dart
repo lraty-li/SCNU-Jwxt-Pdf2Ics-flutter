@@ -5,6 +5,7 @@ import 'package:scnu_jwxt_pdf2ics/util/ThemeState.dart';
 popModalBottomSheet(BuildContext context, List<ListTile> listTileList) {
   showModalBottomSheet(
       backgroundColor: Color(0x00),
+      constraints: BoxConstraints.expand(),
       context: context,
       builder: (BuildContext context) {
         return Consumer<ThemeState>(
@@ -39,32 +40,34 @@ popModalBottomSheet(BuildContext context, List<ListTile> listTileList) {
                       ),
                     )
                   ]),
-                  Container(
-                    height: listTileList.length * 64,
-                    child: Material(
-                      child: ListView.separated(
-                        itemCount: listTileList.length,
-                        itemBuilder: (context, index) {
-                          return listTileList[index];
-                        },
-                        separatorBuilder: (BuildContext context, int index) {
-                          return Divider();
-                        },
+                  Expanded(
+                    child: Container(
+                      height: listTileList.length * 64,
+                      child: Material(
+                        child: ListView.separated(
+                          itemCount: listTileList.length,
+                          itemBuilder: (context, index) {
+                            return listTileList[index];
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return Divider();
+                          },
+                        ),
                       ),
                     ),
                   ),
-                  Material(
-                    child: Container(
-                      height: 64,
-                      child: ListView(
-                        children: [
-                          ListTile(
-                              // title: Text("Hi"),
-                              )
-                        ],
-                      ),
-                    ),
-                  )
+                  // Material(
+                  //   child: Container(
+                  //     height: 64,
+                  //     child: ListView(
+                  //       children: [
+                  //         ListTile(
+                  //             // title: Text("Hi"),
+                  //             )
+                  //       ],
+                  //     ),
+                  //   ),
+                  // )
                 ],
               )),
         );
