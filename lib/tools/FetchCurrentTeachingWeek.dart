@@ -1,8 +1,6 @@
 import 'package:http/http.dart' as http;
 
 Future<int> fetchAlbum() async {
-  //TODO log界面
-  // var logger = Logger();
   final response =
       await http.get(Uri.parse('http://module.scnu.edu.cn/api.php?op=jw_date'));
   RegExp reg = new RegExp(r"&nbsp;\d+&nbsp;");

@@ -1,8 +1,6 @@
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'util/ThemeStat.dart';
-import 'package:provider/provider.dart';
 
 @immutable
 class ExpandableFab extends StatefulWidget {
@@ -155,13 +153,11 @@ class _ExpandableFabState extends State<ExpandableFab>
                       ignoring: !_open,
                       child: GestureDetector(
                         onTap: _toggle,
-                        child: Consumer<ThemeState>(
-                          builder: (context, themeState, child) => Container(
-                            color: Color(0x0).withOpacity(0.9),
-                            height: deviceHeight * 1.5,
-                            width: deviceWidth * 1.5,
-                            child: null,
-                          ),
+                        child: Container(
+                          color: Colors.black.withOpacity(0.9),
+                          height: deviceHeight * 1.5,
+                          width: deviceWidth * 1.5,
+                          child: null,
                         ),
                       ))));
         });
@@ -225,7 +221,6 @@ class ActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Row(
       children: [
         Padding(

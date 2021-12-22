@@ -1,13 +1,66 @@
 {
+    "langSelfDescr": "简体中文",
+    "@langSelfDescr": {
+        "description": "语种文本，用于选择语言时，使用各自语种展示选项"
+    },
     "helloWorld": "你好！世界！",
     "test": "测试",
     "start": "开始",
+    "ready": "准备就绪",
+    "done": "完成!",
+    "previewPdf":"点击预览pdf",
+    "choosingCampus": "选择校区",
     "shiPai": "石牌",
     "daXueCheng": "大学城",
     "nanHai": "南海",
     "shanWei": "汕尾",
-    "icalEventTitleType0":"课程名",
-    "icalEventTitleType1":"课程名+地点",
-    "icalEventTitleType2":"课程名+教师名称",
-    "icalEventTitleType3":"课程名+地点+教师名称"
+    "icalEventTitleType": "事件标题格式",
+    "icalEventTitleType0": "课程名",
+    "icalEventTitleType1": "课程名+地点",
+    "icalEventTitleType2": "课程名+教师名称",
+    "icalEventTitleType3": "课程名+地点+教师名称",
+    "ifAlarm": "是否开启提醒",
+    "alarmMinutes": "提前多少分钟提醒",
+    "currTeachingWeek": "当前教学周",
+    "convert": "开始转换",
+    "shareIcal": "分享日历文件",
+    "openIcal": "打开（导入）日历文件",
+    "theme": "主题",
+    "themeLight": "浅色",
+    "themeDark": "深色",
+    "themeMaterialDark": "Material 深色",
+    "themeFollowSystem": "跟随系统",
+    "language": "语言",
+    "debug": "调试",
+    "scan": "扫码上传",
+    "about": "关于",
+    "progress1": "提取pdf数据...(1/3)",
+    "progress2": "整理课程数据...(2/3)",
+    "progress3": "生成ics文件...(3/3)",
+    "numRangeLimit": "限制为{min}-{max}{unit}",
+    "@numRangeLimit": {
+        "description": "数值输入时，输入大小限制提醒",
+        "placeholders": {
+            "min": {
+                "type": "int",
+                "example": "0"
+            },
+            "max": {
+                "type": "int",
+                "example": "20"
+            },
+            "unit":{
+                "type": "String",
+                "example": "week"
+              }
+        }
+    },
+    "minutes":"分鐘",
+    "week":"周",
+    "sendLog":"分享日志文件",
+    "showLicense":"查看许可证",
+    "close":"关闭",
+    "projLocation":"项目地址",
+    "tapExit":"再点一次退出",
+    "unfinished":"未实现"
 }

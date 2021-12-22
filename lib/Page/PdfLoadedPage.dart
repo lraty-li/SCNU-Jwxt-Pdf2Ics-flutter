@@ -17,6 +17,8 @@ import 'package:scnu_jwxt_pdf2ics/tools/Classifier.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/IcalGenerator.dart';
 import 'package:scnu_jwxt_pdf2ics/Page/ConvertingConfiguration.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 class PdfLoadedPage extends StatefulWidget {
   const PdfLoadedPage({Key? key}) : super(key: key);
   static const routeName = "PdfLoadedPage";
@@ -27,7 +29,7 @@ class PdfLoadedPage extends StatefulWidget {
 
 class _PdfLoadedPageState extends State<PdfLoadedPage> {
   bool _buttonsEnabled = true;
-  String _progressHintText = "准备就绪";
+  late String _progressHintText="";
 
   @override
   void initState() {
@@ -55,13 +57,13 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
         .push(MaterialPageRoute(builder: (context) => pdfView()));
   }
 
-  Future _progressPdf() async {
+  Future _progressPdf(BuildContext context) async {
     final _pdfFilePath = ModalRoute.of(context)!.settings.arguments;
     PDFDoc _pdfDoc = await PDFDoc.fromPath("$_pdfFilePath");
 
     setState(() {
       _buttonsEnabled = false;
-      _progressHintText = "提取pdf数据...(1/3)";
+      _progressHintText = AppLocalizations.of(context)!.progress1;
     });
 
     String pdfRawData = await _pdfDoc.text;
@@ -73,27 +75,27 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
     var textJson = jsonDecode(pdfRawData); //List<Map<dynamic, dynamic>>
 
     setState(() {
-      _progressHintText = "整理课程数据...(2/3)";
+      _progressHintText = AppLocalizations.of(context)!.progress2;
     });
-    Classifier dataClassifier = new Classifier();
-    IcalGenerator icalGenerator = new IcalGenerator();
+    Classifier dataClassifier = Classifier();
+    IcalGenerator icalGenerator = IcalGenerator(context);
     //整理数据
     ClassifiedPdfData pdfFileData = dataClassifier.classify(textJson);
     setState(() {
-      _progressHintText = "生成ics文件...(3/3)";
+      _progressHintText = AppLocalizations.of(context)!.progress3;
     });
     //生成ical
     VCalendar calendar = icalGenerator.generate(pdfFileData);
 
     //保存文件
     String dir = (await getApplicationDocumentsDirectory()).path;
+    //TODO 清除历史残留文件
     String icsPath = '$dir/${pdfFileData.fileInfo['Semester']}.ics';
     File icalFile = new File('$icsPath');
 
     icalFile.writeAsStringSync(calendar.toString());
 
     setState(() {
-      _progressHintText = "完成！";
       _buttonsEnabled = true;
     });
     //ics文件路径放入路由参数,跳转
@@ -115,7 +117,7 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
               children: [
                 //Logo，去除语义
                 Semantics(
-                  value: "点击预览pdf",
+                  value: AppLocalizations.of(context)!.previewPdf,
                   child: ElevatedButton(
                     onPressed: _buttonsEnabled ? _previewPdf : null,
                     child: Column(
@@ -134,20 +136,25 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
                             ),
                           ],
                         ),
-                        Text("点击预览pdf"),
+                        Text(AppLocalizations.of(context)!.previewPdf),
                       ],
                     ),
                   ),
                 ),
 
-                ConvertingConstruction(),
+                ConvertingConfiguration(parentContext: context,),
                 Text(_progressHintText),
                 RoundButton(
-                  onPressed: _buttonsEnabled ? _progressPdf : null,
-                  text: "Read whole document",
+                  onPressed: _buttonsEnabled
+                      ? () {
+                          _progressPdf(context);
+                        }
+                      : null,
+                  text: AppLocalizations.of(context)!.convert,
                   textFontSize: 25,
                   icon: Icons.transform,
                   iconSize: 30,
+                  // padding: const EdgeInsets.fromLTRB(0, 1, 0, 0),
                 ),
               ],
             ),
@@ -157,7 +164,8 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
     );
 
     return ThemedPage(
-      appContent: _scaffold,
+      home: _scaffold,
+      routes: {},
     );
   }
 }

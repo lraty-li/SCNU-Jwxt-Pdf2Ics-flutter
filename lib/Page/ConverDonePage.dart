@@ -3,7 +3,7 @@ import 'package:scnu_jwxt_pdf2ics/tools/ButonBuilder.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ShareFile.dart';
 import 'package:open_file/open_file.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ThemedPage.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ConverDonePage extends StatefulWidget {
   static const routeName = "ConverDonePage";
@@ -14,18 +14,6 @@ class ConverDonePage extends StatefulWidget {
 }
 
 class _ConverDonePageState extends State<ConverDonePage> {
-  Future<void> _shareIcs() async {
-    await shareFile(context, "${ModalRoute.of(context)!.settings.arguments}");
-  }
-
-  void _openFile() async {
-    final _result = await OpenFile.open(
-        "${ModalRoute.of(context)!.settings.arguments}",
-        type: "text/calendar",
-        uti: "text/calendar");
-    print(_result.message);
-  }
-
   @override
   Widget build(BuildContext context) {
     var _scaffold = Scaffold(
@@ -50,32 +38,43 @@ class _ConverDonePageState extends State<ConverDonePage> {
                 ),
               ],
             ),
-            Text("完成!"),
+            Text(AppLocalizations.of(context)!.done),
 
-            Padding(
-                padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-                child: RoundButton(
-                  onPressed: _shareIcs,
-                  text: "分享日历文件",
-                  textFontSize: 25,
-                  icon: Icons.share,
-                  iconSize: 30,
-                )),
-
-            Padding(
+            RoundButton(
+              onPressed: () async {
+                //share ics file
+                await shareFile(
+                    context, "${ModalRoute.of(context)!.settings.arguments}");
+              },
+              text: AppLocalizations.of(context)!.shareIcal,
+              textFontSize: 25,
+              icon: Icons.share,
+              iconSize: 30,
               padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
-              child: RoundButton(
-                onPressed: _openFile,
-                text: "打开（导入）日历文件",
-                textFontSize: 25,
-                icon: Icons.event,
-                iconSize: 30,
-              ),
+            ),
+
+            RoundButton(
+              onPressed: () async {
+                //open ics file
+                final _result = await OpenFile.open(
+                    "${ModalRoute.of(context)!.settings.arguments}",
+                    type: "text/calendar",
+                    uti: "text/calendar");
+                print(_result.message);
+              },
+              text: AppLocalizations.of(context)!.openIcal,
+              textFontSize: 25,
+              icon: Icons.event,
+              iconSize: 30,
+              padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
             ),
           ],
         ),
       ),
     );
-    return ThemedPage(appContent: _scaffold,);
+    return ThemedPage(
+      home: _scaffold,
+      routes: {},
+    );
   }
 }

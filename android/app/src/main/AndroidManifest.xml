@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.pdf2icalinterface">
    <application
-        android:label="pdf2icalinterface"
+        android:label="SCNU_pdf2ical"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

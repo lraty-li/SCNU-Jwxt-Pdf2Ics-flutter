@@ -1,16 +1,21 @@
+import 'package:flutter/cupertino.dart';
+import 'package:provider/src/provider.dart';
+
 import '../util/CourseData.dart';
 import '../util/ConvertingConfigurationData.dart';
 import 'package:enough_icalendar/enough_icalendar.dart';
 import 'package:uuid/uuid.dart';
-import '../util/enums.dart';
+import '../util/confgEnums.dart';
 
 class IcalGenerator {
-  IcalGenerator() {
-    _currTeachingWeek = ConvertingConfigurationData.currentTeachingWeek;
-    _campus = ConvertingConfigurationData.campus;
-    _icalTitleType = ConvertingConfigurationData.icalTitleType;
-    _alarMinutes = ConvertingConfigurationData.alarMinutes;
-    _ifSetAlarm = ConvertingConfigurationData.ifAlarm;
+  IcalGenerator(BuildContext context) {
+    final convertingConfigurationDataState =
+        context.read<ConvertingConfigurationDataState>();
+    _currTeachingWeek = convertingConfigurationDataState.currentTeachingWeek;
+    _campus = convertingConfigurationDataState.campus;
+    _icalTitleType = convertingConfigurationDataState.icalTitleType;
+    _alarMinutes = convertingConfigurationDataState.alarMinutes;
+    _ifSetAlarm = convertingConfigurationDataState.ifAlarm;
   }
 
   late campusIdEnum _campus;

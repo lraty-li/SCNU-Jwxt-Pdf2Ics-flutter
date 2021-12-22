@@ -1,14 +1,14 @@
 {
-    "langSelfDescr": "繁體中文",
+    "langSelfDescr": "繁體中文（臺灣）",
     "@langSelfDescr": {
-        "description": "語種文本，用於選擇語言時，使用各自語種展示選項"
+        "description": "語種文字，用於選擇語言時，使用各自語種展示選項"
     },
     "helloWorld": "你好！世界！",
     "test": "測試",
     "start": "開始",
     "ready": "準備就緒",
     "done": "完成!",
-    "previewPdf":"點擊預覽pdf",
+    "previewPdf": "點選預覽pdf",
     "choosingCampus": "選擇校區",
     "shiPai": "石牌",
     "daXueCheng": "大學城",
@@ -19,25 +19,25 @@
     "icalEventTitleType1": "課程名+地點",
     "icalEventTitleType2": "課程名+教師名稱",
     "icalEventTitleType3": "課程名+地點+教師名稱",
-    "ifAlarm": "是否開啓提醒",
+    "ifAlarm": "是否開啟提醒",
     "alarmMinutes": "提前多少分鐘提醒",
     "currTeachingWeek": "當前教學周",
     "convert": "開始轉換",
-    "shareIcal": "分享日曆文件",
-    "openIcal": "打開（導入）日曆文件",
+    "shareIcal": "分享日曆檔案",
+    "openIcal": "開啟（匯入）日曆檔案",
     "theme": "主題",
     "themeLight": "淺色",
     "themeDark": "深色",
     "themeMaterialDark": "Material 深色",
     "themeFollowSystem": "跟隨系統",
     "language": "語言",
-    "debug": "調試",
+    "debug": "除錯",
     "scan": "掃碼上傳",
     "about": "關於",
-    "progress1": "提取pdf數據...(1/3)",
-    "progress2": "整理課程數據...(2/3)",
-    "progress3": "生成ics文件...(3/3)",
-    "numRangeLimit": "限制為{min}-{max}{unit}",
+    "progress1": "提取pdf資料...(1/3)",
+    "progress2": "整理課程資料...(2/3)",
+    "progress3": "生成ics檔案...(3/3)",
+    "numRangeLimit": "限制為{min}-{max} {unit}",
     "@numRangeLimit": {
         "description": "數值輸入時，輸入大小限制提醒",
         "placeholders": {
@@ -49,18 +49,18 @@
                 "type": "int",
                 "example": "20"
             },
-            "unit":{
+            "unit": {
                 "type": "String",
                 "example": "week"
-              }
+            }
         }
     },
     "minutes":"分鐘",
     "week":"周",
-    "sendLog":"分享日誌文件",
-    "showLicense":"查看許可證",
+    "sendLog":"分享日誌檔案",
+    "showLicense":"檢視許可證",
     "close":"關閉",
-    "projLocation":"項目地址",
+    "projLocation":"專案地址",
     "tapExit":"再點一次退出",
     "unfinished":"未實現"
 }

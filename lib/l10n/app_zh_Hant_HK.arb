@@ -1,5 +1,5 @@
 {
-    "langSelfDescr": "繁體中文",
+    "langSelfDescr": "繁體中文（香港）",
     "@langSelfDescr": {
         "description": "語種文本，用於選擇語言時，使用各自語種展示選項"
     },
@@ -51,7 +51,7 @@
             },
             "unit":{
                 "type": "String",
-                "example": "week"
+                "example": "周"
               }
         }
     },
