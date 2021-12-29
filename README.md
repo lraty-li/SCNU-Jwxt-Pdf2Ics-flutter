@@ -32,7 +32,7 @@
 
 - [转换过程](https://github.com/lraty-li/SCNU-Jwxt-Pdf2Ics-flutter/blob/main/lib/Page/PdfLoadedPage.dart#L69)。
 
-- 关于提取线（边框），`PdfParser.kt` 中注释了收集线路径的方法，懒得重写数据整理的代码而没有使用。需要注意该方法并没有对坐标进行变换，与目前导出的文本坐标将不一致。
+- 关于提取线（边框），`PdfParser.kt` 中注释了收集线路径的方法，尚未重写数据整理的代码而没有使用。需要注意该方法并没有对坐标进行变换，与目前导出的文本坐标将不一致。
 
 - `DOC/RawDataExample`下有绘制示例，注意坐标轴延伸方向，相关个人信息已改为NULL。
 
@@ -42,3 +42,5 @@
 
 - 日志功能是暴力地经由ffi调用dup2实现[地址](https://github.com/lraty-li/flutter_dup2)，第一次编译需要下载ndk，完成时间受网络状况影响。
 - 本项目修改并直接使用了[flutter-pdf-text](https://github.com/AlessioLuciani/flutter-pdf-text)中的代码，由导出文本改为导出符号及其坐标。插件计划仅上传到GitHub。
+
+- FetchCurrentTeachingWeek能够向教务处请求当前教学周，但假期时返回值未知，暂不使用。
