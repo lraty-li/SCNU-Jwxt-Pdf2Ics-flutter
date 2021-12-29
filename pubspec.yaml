@@ -46,7 +46,7 @@ dependencies:
   url_launcher: ^6.0.17  
   fluttertoast: ^8.0.8
 dev_dependencies:
-  flutter_driver:
+  integration_test:
     sdk: flutter
   flutter_test:
     sdk: flutter
