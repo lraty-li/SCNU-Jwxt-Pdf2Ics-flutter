@@ -19,6 +19,7 @@ import 'package:native_dup2/native_dup2.dart';
 import 'package:ffi/src/utf8.dart';
 
 //TODO 接受外部intent
+//TODO 单个事件生成二维码 https://zxing.appspot.com/generator Calendar Event
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
