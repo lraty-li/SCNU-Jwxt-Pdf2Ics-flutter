@@ -8,6 +8,11 @@
 
 ***readme撰写中。***
 
+## Preivew
+
+<img src="./DOC/Previews/Recording_2022-07-02-05-48-06.gif" height=400>
+<img src="./DOC/Previews/Recording_2022-07-02-05-49-03.gif" height=400>
+
 ## How to translate this app to your language?
 
 1. Create arb file under `\lib\l10n`, naming it as ```app_[language code]_[script code]_[country code].arb```, you can simply copy one of these arb files then rename it.
