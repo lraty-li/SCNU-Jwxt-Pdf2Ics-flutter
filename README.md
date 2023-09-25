@@ -43,6 +43,10 @@
 
 - 参考 [PDFBox - Line / Rectangle extraction](https://stackoverflow.com/questions/55166990/pdfbox-line-rectangle-extraction) 与 [pdfbox 2.0.2 ....](https://stackoverflow.com/questions/38931422/pdfbox-2-0-2-calling-of-pagedrawer-processpage-method-caught-exceptions)
 
+## 已知问题
+
+- 未适配单双周
+
 ## 其他
 
 - 日志功能是暴力地经由ffi调用dup2实现[地址](https://github.com/lraty-li/flutter_dup2)，第一次编译需要下载ndk，完成时间受网络状况影响。
