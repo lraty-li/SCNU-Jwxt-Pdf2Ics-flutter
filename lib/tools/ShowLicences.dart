@@ -36,7 +36,7 @@ ShowLicense(BuildContext Uppercontext, ThemeData themeData) {
 
 \nModify and directly use code from flutter-pdf-text MIT license \n(https://github.com/AlessioLuciani/flutter-pdf-text)""",
                     style:
-                        TextStyle(color: themeData.textTheme.bodyText1!.color))
+                        TextStyle(color: themeData.textTheme.bodyMedium!.color))
               ])),
             ),
             actions: <Widget>[

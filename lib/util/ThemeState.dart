@@ -79,7 +79,7 @@ class ThemeState extends ChangeNotifier {
         return Colors.blueGrey.shade800;
       return Colors.blueGrey.shade600;
     }))),
-    textTheme: TextTheme(bodyText1: TextStyle(color: Colors.white)),
+    textTheme: TextTheme(bodyMedium: TextStyle(color: Colors.white)),
     brightness: Brightness.dark,
   );
 

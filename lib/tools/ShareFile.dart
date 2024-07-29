@@ -12,7 +12,7 @@ Future<bool> shareFile(BuildContext context, String fileNamePath) async {
   //make sure got storage permission
 
   if (await Permission.storage.isGranted) {
-    await Share.shareFiles(['$fileNamePath'],
+    await Share.shareXFiles([XFile('$fileNamePath')],
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
     return true;
   }

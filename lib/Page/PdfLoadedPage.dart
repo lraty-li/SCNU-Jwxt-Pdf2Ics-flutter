@@ -4,13 +4,12 @@ import 'dart:io';
 import 'package:enough_icalendar/enough_icalendar.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:pdfx/pdfx.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ButonBuilder.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/ThemedPage.dart';
 import 'package:scnu_jwxt_pdf2ics/util/CourseData.dart';
 
 import 'package:scnu_jwxt_pdf2ics/Page/ConverDonePage.dart';
-
-import 'package:native_pdf_view/native_pdf_view.dart';
 
 import 'package:scnu_jwxt_pdf2ics/util/Pdf.dart';
 import 'package:scnu_jwxt_pdf2ics/tools/Classifier.dart';
@@ -29,7 +28,7 @@ class PdfLoadedPage extends StatefulWidget {
 
 class _PdfLoadedPageState extends State<PdfLoadedPage> {
   bool _buttonsEnabled = true;
-  late String _progressHintText="";
+  late String _progressHintText = "";
 
   @override
   void initState() {
@@ -142,7 +141,9 @@ class _PdfLoadedPageState extends State<PdfLoadedPage> {
                   ),
                 ),
 
-                ConvertingConfiguration(parentContext: context,),
+                ConvertingConfiguration(
+                  parentContext: context,
+                ),
                 Text(_progressHintText),
                 RoundButton(
                   onPressed: _buttonsEnabled
