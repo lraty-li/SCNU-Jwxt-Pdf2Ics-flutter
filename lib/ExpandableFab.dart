@@ -132,7 +132,7 @@ class _ExpandableFabState extends State<ExpandableFab>
         child: Icon(
           Icons.add,
           size: 40,
-          color: Colors.white,
+          // color: Colors.white,
         ),
       ),
     );
