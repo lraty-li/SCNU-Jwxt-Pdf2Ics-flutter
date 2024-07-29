@@ -280,8 +280,8 @@ packages:
     dependency: "direct main"
     description:
       path: "."
-      ref: "79948e5ce4c1c6e72c41eceb10964b367abeaf2f"
-      resolved-ref: "79948e5ce4c1c6e72c41eceb10964b367abeaf2f"
+      ref: ca4e44ca4e6647674409cb233c6d38126248a3c7
+      resolved-ref: ca4e44ca4e6647674409cb233c6d38126248a3c7
       url: "https://github.com/lraty-li/flutter_dup2.git"
     source: git
     version: "0.0.1"

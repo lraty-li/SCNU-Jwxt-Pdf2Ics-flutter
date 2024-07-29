@@ -31,7 +31,7 @@ dependencies:
   native_dup2:
     git:
       url: https://github.com/lraty-li/flutter_dup2.git
-      ref: 79948e5ce4c1c6e72c41eceb10964b367abeaf2f
+      ref: ca4e44ca4e6647674409cb233c6d38126248a3c7
   cupertino_icons: ^1.0.2
   provider: ^6.0.1
   pdfx: ^2.6.0
